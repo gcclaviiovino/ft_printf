@@ -1,24 +1,26 @@
 SRCFILES = ft_printf.c ft_printf_utils.c ft_printf_ptr_format.c ft_printf_num_formats.c ft_printf_char_formats.c
 
 CC = gcc
-CFLAGS = -g -Wall -Wextra -Werror -Ilibft
+CFLAGS = -Wall -Wextra -Werror
 OBJFILES = $(SRCFILES:.c=.o)
 NAME = libftprintf.a
-LIBFT_DIR = libft
-LIBFT = $(LIBFT_DIR)/libft.a
+LIBFT_DIR = ./libft
+LIBFT = ./libft/libft.a
 LIBCR = ar rcs
 RM = rm -f
+CP = cp
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
-all: ${LIBFT} ${NAME}
+all: ${NAME}
 
 $(LIBFT):
 	$(MAKE) -C $(LIBFT_DIR)
 
-$(NAME): ${OBJFILES}
-	$(LIBCR) $(NAME) $(OBJFILES) $(LIBFT)
+$(NAME): ${LIBFT} ${OBJFILES}
+	$(CP) $(LIBFT) $(NAME)
+	$(LIBCR) $(NAME) $(OBJFILES)
 
 clean:
 	$(RM) *.o
