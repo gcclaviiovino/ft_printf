@@ -22,6 +22,11 @@ int	print_str(char *str)
 {
 	int	i;
 
+	if (!str)
+	{
+		ft_putstr_fd("(null)", 1);
+		return (ft_strlen("(null)"));
+	}
 	ft_putstr_fd(str, 1);
 	i = ft_strlen(str);
 	return (i);

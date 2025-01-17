@@ -14,20 +14,45 @@
 
 int	prefix(char **pointer)
 {
-	*pointer = ft_strjoin("0x", *pointer);
-	return (2);
+	char	*new_pointer;
+
+	new_pointer = ft_strjoin("0x", *pointer);
+	if (!new_pointer)
+	{
+		free(new_pointer);
+		free(*pointer);
+		pointer = NULL;
+		return (0);
+	}
+	free(*pointer);
+	*pointer = new_pointer;
+	return (0);
 }
 
 int	fill_ptr(char **pointer, uintptr_t num)
 {
 	char	*add;
 	int		count;
+	char	*new;
 
-	count = 0;
-	count += prefix(pointer);
+	count = prefix(pointer);
 	add = ft_uitoa_base(num, 16);
-	*pointer = ft_strjoin(*pointer, add);
-	count += ft_strlen(add);
+	if (!add)
+	{
+		free(add);
+		free(*pointer);
+		return (0);
+	}
+	new = ft_strjoin(*pointer, add);
+	free(add);
+	free(*pointer);
+	if (!new)
+	{
+		free(new);
+		return (0);
+	}
+	*pointer = new;
+	count += ft_strlen(*pointer);
 	return (count);
 }
 
@@ -38,7 +63,6 @@ int	print_point(void *pointer)
 	char		*out;
 
 	address = (uintptr_t)pointer;
-	printf("add: %zu\n", address);
 	len = 0;
 	if (address == 0)
 	{
@@ -51,5 +75,7 @@ int	print_point(void *pointer)
 	out[0] = '\0';
 	len += fill_ptr(&out, address);
 	ft_putstr_fd(out, 1);
+	free(out);
+
 	return (len);
 }

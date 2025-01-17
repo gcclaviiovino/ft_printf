@@ -27,14 +27,12 @@ int	usize(unsigned long int nb, size_t base)
 	return (count);
 }
 
-char	*ft_uitoa_base(unsigned long int n, int base)
+char	*ft_uitoa_base(unsigned long int n_l, int base)
 {
 	int					len;
 	char				*str;
-	unsigned long int	n_l;
 	int					remainder;
 
-	n_l = n;
 	len = usize(n_l, base);
 	str = (char *) malloc(sizeof(char) * (len + 1));
 	if (!str)
@@ -48,25 +46,24 @@ char	*ft_uitoa_base(unsigned long int n, int base)
 		if (remainder < 10)
 			str[--len] = remainder + '0';
 		else
-			str[--len] = (remainder - 10) + 'A';
+			str[--len] = (remainder - 10) + 'a';
 		n_l /= base;
 	}
 	return (str);
 }
+
 char	*ft_case_changer(char *str, char type)
 {
 	int	i;
 
 	i = 0;
-	if (type == 'x')
+	while (str[i])
 	{
-		while (str[i])
-			ft_tolower(str[i++]);
-	}
-	else
-	{
-		while (str[i])
-			ft_toupper(str[i++]);
+		if (type == 'x')
+			str[i] = ft_tolower(str[i]);
+		else
+			str[i] = ft_toupper(str[i]);
+		i ++;
 	}
 	ft_putstr_fd(str, 1);
 	return (str);

@@ -1,7 +1,7 @@
 SRCFILES = ft_printf.c ft_printf_utils.c ft_printf_ptr_format.c ft_printf_num_formats.c ft_printf_char_formats.c
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -g -Wall -Wextra -Werror
 OBJFILES = $(SRCFILES:.c=.o)
 NAME = libftprintf.a
 LIBFT_DIR = ./libft

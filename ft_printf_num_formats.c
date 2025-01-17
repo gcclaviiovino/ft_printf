@@ -20,8 +20,10 @@ int	print_num(int n)
 	ft_putnbr_fd(n, 1);
 	str = ft_itoa(n);
 	i = ft_strlen(str);
+	free(str);
 	return (i);
 }
+
 int	print_unum(unsigned int n)
 {
 	int		i;
@@ -30,19 +32,18 @@ int	print_unum(unsigned int n)
 	str = ft_uitoa_base(n, 10);
 	ft_putstr_fd(str, 1);
 	i = ft_strlen(str);
+	free(str);
 	return (i);
 }
 
-int	print_hex(int num, char arg)
+int	print_hex(long int num, char arg)
 {
 	char	*res;
 	int		len;
 
-	len = usize(num, 16);
-	res = (char *) malloc(sizeof(char) * (len + 1));
-	if (!res)
-		return (0);
 	res = ft_uitoa_base(num, 16);
 	ft_case_changer(res, arg);
+	len = ft_strlen(res);
+	free(res);
 	return (len);
 }

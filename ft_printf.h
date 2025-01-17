@@ -25,12 +25,13 @@ int		print_c(int c);
 int		print_str(char *str);
 int		print_num(int n);
 int		print_unum(unsigned int n);
-int		print_hex(int num, char arg);
+int		print_hex(long int num, char arg);
 int		print_point(void *pointer);
 int		fill_ptr(char **pointer, uintptr_t num);
 int		prefix(char **pointer);
 int		usize(unsigned long int nb, size_t base);
-char	*ft_uitoa_base(unsigned long int n, int base);
+char	*ft_uitoa_base(unsigned long int n_l, int base);
 char	*ft_case_changer(char *str, char type);
+char	*ft_itoa_hex(unsigned long int n_l, int base);
 
 #endif
