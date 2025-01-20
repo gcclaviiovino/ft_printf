@@ -30,7 +30,7 @@ int	print_me(va_list args, const char arg)
 	else if (arg == 'u')
 		count += print_unum(va_arg(args, unsigned int));
 	else if (arg == 'x' || arg == 'X')
-		count += print_hex(va_arg(args, long int), arg);
+		count += print_hex(va_arg(args, unsigned int), arg);
 	return (count);
 }
 

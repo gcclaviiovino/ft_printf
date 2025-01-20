@@ -36,7 +36,7 @@ int	print_unum(unsigned int n)
 	return (i);
 }
 
-int	print_hex(long int num, char arg)
+int	print_hex(unsigned int num, char arg)
 {
 	char	*res;
 	int		len;
